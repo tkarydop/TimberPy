@@ -112,10 +112,10 @@ def create_grid_map(excel_file, background_image=None, x_size=39, y_size=32):
             else:
                 img = Image.open(background_image)
                 img = img.resize((x_size * 50, y_size * 50))  # Adjust size to match grid
-                plt.imshow(img, extent=[0, x_size, 0, y_size], alpha=0.8)  # Increased background visibility
+                plt.imshow(img, extent=[0, x_size, y_size, 0], alpha=0.8)  # Modified to maintain orientation
         
         # Create heatmap with higher transparency
-        plt.imshow(grid, cmap='YlOrRd', alpha=0.2)  # Further reduced alpha for more background visibility
+        plt.imshow(grid, cmap='YlOrRd', alpha=0.2, extent=[0, x_size, y_size, 0])  # Modified to match background orientation
         plt.colorbar(label='Tree Volume (m³)')
         
         # Add coordinates
@@ -128,7 +128,7 @@ def create_grid_map(excel_file, background_image=None, x_size=39, y_size=32):
                 y_labels.append(chr(65 + ((i-26) // 26)) + chr(65 + ((i-26) % 26)))
         
         plt.xticks(range(x_size), x_labels, rotation=45)
-        plt.yticks(range(y_size), y_labels[::-1])
+        plt.yticks(range(y_size), y_labels)  # Removed the reverse
         
         plt.title('Tree Volume Grid Map')
         plt.xlabel('X Coordinate')
