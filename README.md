@@ -1,4 +1,4 @@
-__bold text__TimberPy
+**TimberPy**
 
 TimberPy is a Python-based tool for analyzing and managing timber resources. It provides functionalities for forest resource management, timber volume estimation, and sustainable forestry practices.
 
